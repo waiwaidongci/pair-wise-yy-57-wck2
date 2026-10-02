@@ -19,7 +19,7 @@ const nav = [
     <n-layout-sider :width="230" class="sider">
       <div class="brand"><span>联</span><div><b>信号联锁测试台</b><small>INTERLOCKING QA</small></div></div>
       <n-menu :value="String(route.name || 'overview')" :options="nav.map((item) => ({ key:item.name,label:item.label }))" @update:value="(key: string) => router.push({ name:key })" />
-      <div class="station-card"><i :class="store.connection === '在线' ? 'online' : 'offline'"></i><div><b>海州站 CS</b><small>版本 v26.10 · {{store.connection}}</small></div></div>
+      <div class="station-card"><i :class="store.connection === '在线' ? 'online' : 'offline'"></i><div><b>海州站 CS</b><small>版本 v26.10 · {{store.connection}}</small><small>值班：{{store.currentOperator}}</small></div></div>
     </n-layout-sider>
     <n-layout>
       <n-layout-header class="topbar"><div><b>海州站软件升级回归</b><small>联锁版本 CS-v26.10 · 计划发布 2026-10-03</small></div><div class="top-actions"><n-tag :type="store.connection === '在线' ? 'success' : 'warning'">{{ store.liveMessage }}</n-tag><n-button v-if="store.pendingRetry" type="warning" @click="store.retry">重试 {{store.pendingRetry}} 项</n-button><n-button type="primary" @click="store.startExecution">开始执行当前用例</n-button></div></n-layout-header>
